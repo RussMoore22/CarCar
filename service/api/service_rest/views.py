@@ -23,6 +23,7 @@ class TechnicianEncoder(ModelEncoder):
         "first_name",
         "last_name",
         "employee_id",
+        "id",
     ]
 
 
@@ -62,12 +63,36 @@ def api_technicians(request):
 @require_http_methods(["DELETE"])
 def api_technician_delete(request, pk):
     try:
-        tech = Technician.objects.get(id=pk)
-        tech.delete()
+        count, _ = Technician.objects.filter(id=pk).delete()
+        return JsonResponse({"delete": count > 0})
+    except Technician.DoesNotExist:
+        return JsonResponse({"message": "Does not exist"})
+
+
+@require_http_methods(["GET", "POST"])
+def api_appointments(request):
+    if request.method == "GET":
+        appts = Appointment.objects.all()
         return JsonResponse(
-            tech,
-            encoder=TechnicianEncoder,
+            {"appointments": appts},
+            encoder=AppointmentEncoder,
             safe=False
         )
+    else:
+        content = json.loads(request.body)
+        tech = Technician.objects.get(id=content["technician"])
+        content["technician"] = tech
+        tech = Appointment.objects.create(**content)
+        return JsonResponse(
+            tech,
+            encoder=AppointmentEncoder,
+            safe=False,
+        )
+
+@require_http_methods("DELETE")
+def api_appointment_delete(request, pk):
+    try:
+        count, _ = Appointment.objects.filter(id=pk).delete()
+        return JsonResponse({"delete": count > 0})
     except Technician.DoesNotExist:
         return JsonResponse({"message": "Does not exist"})

@@ -20,6 +20,7 @@ class Technician(models.Model):
 class Appointment(models.Model):
     date_time = models.DateTimeField()
     reason = models.TextField()
+    customer = models.CharField(max_length=100)
     status = models.CharField(
         max_length=10,
         choices=STATUS_CHOICES,
