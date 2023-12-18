@@ -96,3 +96,27 @@ def api_appointment_delete(request, pk):
         return JsonResponse({"delete": count > 0})
     except Technician.DoesNotExist:
         return JsonResponse({"message": "Does not exist"})
+
+
+@require_http_methods("PUT")
+def api_appointment_cancel(request, pk):
+    print(pk, " THIS IS PK **********")
+    Appointment.objects.filter(id=pk).update(status="CANCELLED")
+    appt = Appointment.objects.get(id=pk)
+
+    return JsonResponse(
+        appt,
+        encoder=AppointmentEncoder,
+        safe=False
+    )
+
+
+@require_http_methods("PUT")
+def api_appointment_finish(request, pk):
+    Appointment.objects.filter(id=pk).update(status="FINISHED")
+    appt = Appointment.objects.get(id=pk)
+    return JsonResponse(
+        appt,
+        encoder=AppointmentEncoder,
+        safe=False
+    )
