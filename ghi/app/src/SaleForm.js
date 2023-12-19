@@ -153,7 +153,7 @@ function SaleForm() {
                 <input onChange={handlePriceChange} placeholder="Price" required type="number" id="price" name="price" className="form-control" value={price}/>
                 <label htmlFor="price">Price</label>
               </div>
-              <button className="btn btn-primary">Record</button>
+              <button className="btn btn-primary">Record Sale</button>
             </form>
           </div>
         </div>

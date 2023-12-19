@@ -11,25 +11,34 @@ function Nav() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
+              <NavLink className="nav-link" to="/manufacturers">Manufacturer List</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/manufacturers/create">Create a Manufacturer</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/vehicles">Vehicle Model List</NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink className="nav-link" to="/sales">Sales List</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/sales/create">Create sale</NavLink>
+              <NavLink className="nav-link" to="/sales/create">Create Sale</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/sales/history">Sale history</NavLink>
+              <NavLink className="nav-link" to="/sales/history">Sale History</NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/customers">Customer List</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/customers/create">Add customer</NavLink>
+              <NavLink className="nav-link" to="/customers/create">Add Customer</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/salespeople">Salespeople</NavLink>
+              <NavLink className="nav-link" to="/salespeople">Salespeople List</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/salespeople/create">Salespeople</NavLink>
+              <NavLink className="nav-link" to="/salespeople/create">Create a Salesperson</NavLink>
             </li>
           </ul>
         </div>

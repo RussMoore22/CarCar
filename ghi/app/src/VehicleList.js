@@ -1,20 +1,20 @@
 import React, {useState, useEffect} from "react";
 
-function ManufacturerList() {
-    const [manufacturers, setManufacturers] = useState([]);
+function VehicleList() {
+    const [vehicles, setVehicles] = useState([]);
     const fetchData = async () => {
-        const url = "http://localhost:8100/api/manufacturers/";
+        const url = "http://localhost:8100/api/models/";
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
-            setManufacturers(data.manufacturers);
+            setVehicles(data.models);
         }
     }
 
     const handleDelete = async (event) => {
         event.preventDefault();
         const id = event.target.value;
-        const deleteUrl = `http://localhost:8100/api/manufacturers/${id}/`
+        const deleteUrl = `http://localhost:8100/api/models/${id}/`
         const fetchOptions = {
             method: "DELETE"
         }
@@ -32,16 +32,20 @@ function ManufacturerList() {
         <table className="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th>Manufacturers</th>
+                    <th>Manufacturer</th>
+                    <th>Model</th>
+                    <th>Picture</th>
                     <th>Remove</th>
                 </tr>
             </thead>
             <tbody>
-                {manufacturers.map((m) => {
+                {vehicles.map((v) => {
                     return (
-                        <tr key={m.id}>
-                            <td>{ m.name }</td>
-                            <td><button onClick={handleDelete} className="btn btn-danger" value={m.id}>Remove</button></td>
+                        <tr key={v.id}>
+                            <td>{ v.manufacturer.name }</td>
+                            <td>{ v.name }</td>
+                            <td><img src={v.picture_url} width={120} /></td>
+                            <td><button onClick={handleDelete} className="btn btn-danger" value={v.id}>Remove</button></td>
                         </tr>
                     )
                 })}
@@ -52,4 +56,4 @@ function ManufacturerList() {
 
 }
 
-export default ManufacturerList;
+export default VehicleList;
