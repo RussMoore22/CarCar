@@ -8,6 +8,7 @@ import CustomerForm from './CustomerForm';
 import SaleForm from './SaleForm';
 import SaleList from './SaleList';
 import SaleHistory from './SaleHistory';
+import ManufacturerList from './ManufacturerList';
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
             <Route index element={<SaleList />} />
             <Route path="history" element={<SaleHistory />} />
             <Route path="create" element={<SaleForm />} />
+          </Route>
+          <Route path="manufacturers">
+            <Route index element={<ManufacturerList />} />
           </Route>
         </Routes>
       </div>
