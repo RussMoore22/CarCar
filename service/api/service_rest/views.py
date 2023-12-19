@@ -30,7 +30,9 @@ class TechnicianEncoder(ModelEncoder):
 class AppointmentEncoder(ModelEncoder):
     model = Appointment
     properties = [
+        "id",
         "date_time",
+        "customer",
         "reason",
         "status",
         "vin",
@@ -120,3 +122,15 @@ def api_appointment_finish(request, pk):
         encoder=AppointmentEncoder,
         safe=False
     )
+
+
+@require_http_methods(["GET"])
+def api_automobileVOs_list(request):
+    autos = AutomobileVO.objects.all()
+    return JsonResponse(
+        {"autos": autos},
+        encoder=AutomobileVOEncoder,
+        safe=False
+        )
+
+

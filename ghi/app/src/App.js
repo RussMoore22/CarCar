@@ -4,6 +4,7 @@ import Nav from './Nav';
 import TechCreateForm from './TechCreateForm';
 import TechList from './TechList';
 import AppointmentCreateForm from './AppointmentCreateForm';
+import ApptList from './ApptList';
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/technicians" element={<TechList />} />
           <Route path="/technicians/create" element={<TechCreateForm />} />
+
           <Route path="/appointments/create" element={<AppointmentCreateForm />} />
+          <Route path="/appointments" element={<ApptList />} />
         </Routes>
       </div>
     </BrowserRouter>

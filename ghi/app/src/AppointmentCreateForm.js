@@ -10,7 +10,7 @@ function AppointmentCreateForm(props){
         status: '',
         vin: '',
         technician: '',
-    };
+    }
     const [formData, setFormData] = useState(apptInit);
     const [techs, setTechs] = useState([])
 
@@ -27,8 +27,9 @@ function AppointmentCreateForm(props){
     const handleSubmit = async (event) => {
         event.preventDefault();
         const apptUrl = 'http://localhost:8080/api/appointments/';
+        formData.status = "CREATED"
         const fetchConfig = {
-            body: JSON.stringify(FormData),
+            body: JSON.stringify(formData),
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -54,16 +55,11 @@ function AppointmentCreateForm(props){
 
     return (
         <div>
-            <div>
-                <p>
-                    hello
-                </p>
-            </div>
         <div className="row">
               <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
-                  <h1>Create a new hat</h1>
-                  <form onSubmit={handleSubmit} id="create-conference-form">
+                  <h1>Create a new appointment</h1>
+                  <form onSubmit={handleSubmit} id="create-appointment-form">
                   <div className="form-floating mb-3">
                         <input placeholder="vin" required type="text" name="vin" value={formData.vin} onChange={handleFormChange}  id="vin" className="form-control" />
                         <label htmlFor="vin">Automobile VIN</label>
@@ -74,7 +70,7 @@ function AppointmentCreateForm(props){
                       </div>
 
                       <div className="form-floating mb-3">
-                        <input placeholder="date_time" required type="text" name="date_time" value={formData.date_time} onChange={handleFormChange}  id="date_time" className="form-control" />
+                        <input placeholder="date_time" required type="datetime-local" name="date_time" value={formData.date_time} onChange={handleFormChange}  id="date_time" className="form-control" />
                         <label htmlFor="date_time">Date and Time</label>
                       </div>
 
@@ -82,12 +78,12 @@ function AppointmentCreateForm(props){
 
 
                     <div className="mb-3">
-                      <select required onChange={handleFormChange} name="location" id="location" value={formData.location} className="form-select">
-                        <option value="location">Choose a location</option>
+                      <select required onChange={handleFormChange} name="technician" id="technician" value={formData.technician} className="form-select">
+                        <option value="technician">Choose a technician</option>
                         {techs.map(tech => {
                             return (
                                 <option key={tech.id} value={tech.id}>
-                                    {tech.employee_id}
+                                    {tech.id}
                                 </option>
                             );
                         })}
@@ -108,4 +104,4 @@ function AppointmentCreateForm(props){
 
 }
 
-export default AppointmentCreateForm()
+export default AppointmentCreateForm;

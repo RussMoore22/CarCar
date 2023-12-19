@@ -6,7 +6,8 @@ from service_rest.views import (
     api_appointments,
     api_appointment_delete,
     api_appointment_cancel,
-    api_appointment_finish
+    api_appointment_finish,
+    api_automobileVOs_list
     )
 
 
@@ -16,5 +17,6 @@ urlpatterns = [
     path("appointments/", api_appointments, name="api_appointments"),
     path("appointments/<int:pk>/", api_appointment_delete, name="api_appointment_delete"),
     path("appointments/<int:pk>/finish/", api_appointment_finish, name="api_appointment_finish"),
-    path("appointments/<int:pk>/cancel/", api_appointment_cancel, name="api_appointment_cancel")
+    path("appointments/<int:pk>/cancel/", api_appointment_cancel, name="api_appointment_cancel"),
+    path("automobiles/", api_automobileVOs_list, name="api_automobileVOs_list"),
 ]
