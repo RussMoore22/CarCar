@@ -1,6 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
+import SalesPersonForm from './SalesPersonForm';
+import SalesPeople from './SalesPeople';
+import CustomerList from './CustomerList';
+import CustomerForm from './CustomerForm';
 
 function App() {
   return (
@@ -9,6 +13,15 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="salespeople">
+            <Route index element={<SalesPeople />} />
+            <Route path="create" element={<SalesPersonForm />} />
+          </Route>
+          <Route path="customers">
+            <Route index element={<CustomerList />} />
+            <Route path="create" element={<CustomerForm />} />
+          </Route>
+
         </Routes>
       </div>
     </BrowserRouter>

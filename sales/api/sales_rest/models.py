@@ -20,7 +20,7 @@ class Customer(models.Model):
     first_name = models.CharField(max_length=25)
     last_name = models.CharField(max_length=35)
     address = models.TextField()
-    phone_number = models.BigIntegerField()
+    phone_number = models.CharField(max_length=25)
 
 
 
@@ -40,3 +40,4 @@ class Sale(models.Model):
         related_name="sales",
         on_delete=models.CASCADE
     )
+    price = models.DecimalField(max_digits=15, decimal_places=2)
