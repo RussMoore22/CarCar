@@ -83,7 +83,7 @@ function AppointmentCreateForm(props) {
             <form onSubmit={handleSubmit} id="create-appointment-form">
               <div className="form-floating mb-3">
                 <input placeholder="vin" required type="text" name="vin" value={formData.vin} onChange={handleFormChange} id="vin" className="form-control" />
-                <label htmlFor="vin">Automobile VIN</label>
+                <label htmlFor="vin">Automobile VIN<span className="text-danger">{ (formData.vin.length > 17) ? "   must be under 17 characters or less!" : "" }</span></label>
               </div>
               <div className="form-floating mb-3">
                 <input placeholder="customer" required type="text" name="customer" value={formData.customer} onChange={handleFormChange} id="customer" className="form-control" />

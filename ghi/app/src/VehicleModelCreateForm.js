@@ -65,7 +65,7 @@ function VehicleModelCreateForm(props) {
               </div>
               <div className="form-floating mb-3">
                 <input placeholder="picture_url" required type="text" name="picture_url" value={formData.picture_url} onChange={handleFormChange} id="picture_url" className="form-control" />
-                <label htmlFor="picture_url">Picture Url</label>
+                <label htmlFor="picture_url">Picture Url<span className="text-danger">{ (formData.picture_url.length > 199) ? "url is too long!" : "" }</span></label>
               </div>
               <div className="mb-3">
                 <select required onChange={handleFormChange} name="manufacturer_id" id="manufacturer_id" value={formData.manufacturer_id} className="form-select">
