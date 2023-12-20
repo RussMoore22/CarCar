@@ -26,35 +26,51 @@ function App() {
       <Nav />
       <div className="container">
         <Routes>
+
           <Route path="/" element={<MainPage />} />
+
           <Route path="salespeople">
             <Route index element={<SalesPeople />} />
             <Route path="create" element={<SalesPersonForm />} />
           </Route>
+
           <Route path="customers">
             <Route index element={<CustomerList />} />
             <Route path="create" element={<CustomerForm />} />
           </Route>
+
           <Route path="sales">
             <Route index element={<SaleList />} />
             <Route path="history" element={<SaleHistory />} />
             <Route path="create" element={<SaleForm />} />
           </Route>
+
           <Route path="manufacturers">
             <Route index element={<ManufacturerList />} />
             <Route path="create" element={<ManufacturerForm />} />
           </Route>
+
           <Route path="vehicles">
             <Route index element={<VehicleList />} />
+            <Route path="create" element={<VehicleModelCreateForm />} />
           </Route>
-          <Route path="/technicians" element={<TechList />} />
-          <Route path="/technicians/create" element={<TechCreateForm />} />
-          <Route path="/appointments/create" element={<AppointmentCreateForm />} />
-          <Route path="/appointments" element={<ApptList />} />
-          <Route path="/appointments/history" element={<ServiceHistory />} />
-          <Route path="/models/create" element={<VehicleModelCreateForm />} />
-          <Route path="/automobiles" element={<AutomobileList />} />
-          <Route path="/automobiles/create" element={<AutomobileCreateForm />} />
+
+          <Route path="technicians">
+            <Route index element={<TechList />} />
+            <Route path="create" element={<TechCreateForm />} />
+          </Route>
+
+          <Route path="appointments">
+            <Route index element={<ApptList />} />
+            <Route path="create" element={<AppointmentCreateForm />} />
+            <Route path="history" element={<ServiceHistory />} />
+          </Route>
+
+          <Route path="automobiles">
+            <Route index element={<AutomobileList />} />
+            <Route path="create" element={<AutomobileCreateForm />} />
+          </Route>
+
         </Routes>
       </div>
     </BrowserRouter>
