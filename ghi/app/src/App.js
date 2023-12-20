@@ -53,7 +53,7 @@ function App() {
           <Route path="/appointments" element={<ApptList />} />
           <Route path="/appointments/history" element={<ServiceHistory />} />
           <Route path="/models/create" element={<VehicleModelCreateForm />} />
-          <Route path="/automobiles/" element={<AutomobileList />} />
+          <Route path="/automobiles" element={<AutomobileList />} />
           <Route path="/automobiles/create" element={<AutomobileCreateForm />} />
         </Routes>
       </div>

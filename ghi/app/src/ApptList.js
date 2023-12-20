@@ -19,7 +19,6 @@ function ApptList(props) {
 
     else {
       const vinData = await vinResponse.json();
-      console.log(vinData.autos)
       let vins = []
       for (const auto of vinData.autos) {
         vins.push(auto.vin)
@@ -34,7 +33,6 @@ function ApptList(props) {
           auto["isVip"] = "no"
         }
       }
-      console.log(result)
       setAppts(result)
     }
 

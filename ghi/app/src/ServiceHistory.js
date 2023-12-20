@@ -17,7 +17,6 @@ function ServiceHistory(props) {
 
     else {
       const vinData = await vinResponse.json();
-      console.log(vinData.autos)
       let vins = []
       for (const auto of vinData.autos) {
         vins.push(auto.vin)
@@ -28,7 +27,6 @@ function ServiceHistory(props) {
         if (vins.includes(auto.vin)) { auto["isVip"] = "Yes" }
         else { auto["isVip"] = "No" }
       }
-      console.log(result)
       setAppts(result)
       setSearchVin('')
     }

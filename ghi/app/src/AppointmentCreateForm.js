@@ -20,7 +20,6 @@ function AppointmentCreateForm(props) {
 
     const value = event.target.value;
     const inputName = event.target.name;
-    console.log(value)
 
     setFormData({
       ...formData,
@@ -40,7 +39,6 @@ function AppointmentCreateForm(props) {
       technician: formData.technician,
     }
     finalData["date_time"] = `${formData.date}T${formData.time}:00`
-    console.log(finalData)
     const fetchConfig = {
       body: JSON.stringify(finalData),
       method: "POST",
