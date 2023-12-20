@@ -29,6 +29,8 @@ function SalesPeople() {
     }, [])
 
     return (
+        <div>
+            <h1>Salespeople</h1>
         <table className="table table-striped table-hover">
             <thead>
                 <tr>
@@ -52,6 +54,7 @@ function SalesPeople() {
             </tbody>
 
         </table>
+    </div>
     )
 
 }

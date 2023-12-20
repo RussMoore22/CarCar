@@ -38,8 +38,6 @@ function CustomerForm() {
         }
         const response = await fetch(custUrl, fetchConfig);
         if (response.ok) {
-            const newCust = await response.json();
-            console.log(newCust);
             setFirstName('');
             setLastName('');
             setAddress('');

@@ -33,7 +33,6 @@ function SalesPersonForm() {
         const response = await fetch(spUrl, fetchConfig);
         if (response.ok) {
             const newSP = await response.json();
-            console.log(newSP);
             setFirstName('');
             setLastName('');
             setEmployeeId('');

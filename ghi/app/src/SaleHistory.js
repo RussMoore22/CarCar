@@ -5,9 +5,7 @@ function SaleHistory() {
     const [salesperson, setSalesperson] = useState('');
     const handleSPChange = async (event) => {
         const id = event.target.value;
-        console.log(id);
         setSalesperson(id);
-        console.log(id);
         getSales(id)
     }
 
@@ -27,7 +25,6 @@ function SaleHistory() {
         if (response.ok) {
             const data = await response.json();
             const results = data.sales;
-            console.log(results);
             const filtered = [];
             for (const r of results) {
                 if (r.salesperson.id == sp) {
@@ -58,7 +55,7 @@ function SaleHistory() {
 
     return (
         <div>
-            <h1>Record New Sale</h1>
+            <h1>Sale Records</h1>
             <form id="select-sp">
             <div className="mb-3">
                 <select  onChange={handleSPChange} required id="salespeople" name="salespeople" className="form-select" value={salesperson}>

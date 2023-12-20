@@ -67,7 +67,6 @@ function SaleForm() {
         }
         const atresponse = await fetch(autUrl, atfetchConfig);
         if (atresponse.ok) {
-            console.log('changed sold to true')
             return 1;
         }
     }
@@ -90,8 +89,6 @@ function SaleForm() {
         }
         const response = await fetch(saleUrl, fetchConfig);
         if (response.ok) {
-            const newSale = await response.json();
-            console.log(newSale);
             setAutomobile('');
             setSalesPerson('');
             setCustomer('');

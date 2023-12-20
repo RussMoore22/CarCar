@@ -21,8 +21,6 @@ function ManufacturerForm() {
         }
         const response = await fetch(url, fetchConfig);
         if (response.ok) {
-            const newMan = await response.json();
-            console.log(newMan);
             setName('');
         }
     }
