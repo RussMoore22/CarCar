@@ -114,9 +114,6 @@ return (
 
     </tbody>
 </table>
-    <div>
-        <Link to='/appointments/create' className="btn btn-info" >Create a new appointment</Link>
-    </div>
 </div>
 )
 

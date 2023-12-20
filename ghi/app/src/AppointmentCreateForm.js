@@ -4,7 +4,8 @@ import React, {useEffect, useState} from "react";
 
 function AppointmentCreateForm(props){
     const apptInit = {
-        date_time: '',
+        date: '',
+        time: '',
         reason: '',
         customer: '',
         status: '',
@@ -16,8 +17,11 @@ function AppointmentCreateForm(props){
 
 
     const handleFormChange = (event) => {
+
         const value = event.target.value;
         const inputName = event.target.name;
+        console.log( value)
+
         setFormData({
             ...formData,
             [inputName]:value
@@ -28,8 +32,17 @@ function AppointmentCreateForm(props){
         event.preventDefault();
         const apptUrl = 'http://localhost:8080/api/appointments/';
         formData.status = "CREATED"
+        let finalData = {
+          reason: formData.reason,
+          customer: formData.customer,
+          status: formData.status,
+          vin: formData.vin,
+          technician: formData.technician,
+        }
+        finalData["date_time"] = `${formData.date}T${formData.time}:00`
+        console.log(finalData)
         const fetchConfig = {
-            body: JSON.stringify(formData),
+            body: JSON.stringify(finalData),
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -40,6 +53,7 @@ function AppointmentCreateForm(props){
             setFormData(apptInit)
         }
     }
+
     const fetchData = async () => {
         const techUrl = 'http://localhost:8080/api/technicians/';
         const response = await fetch(techUrl);
@@ -53,12 +67,21 @@ function AppointmentCreateForm(props){
         fetchData();
     }, []);
 
+  function getDate(utcDate) {
+      const event = new Date(utcDate)
+      return event.toLocaleDateString()
+  }
+  function getTime(utcDate) {
+      const event = new Date(utcDate)
+      return event.toLocaleTimeString()
+  }
+
     return (
         <div>
         <div className="row">
               <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
-                  <h1>Create a new appointment</h1>
+                  <h1>Create a service appointment</h1>
                   <form onSubmit={handleSubmit} id="create-appointment-form">
                   <div className="form-floating mb-3">
                         <input placeholder="vin" required type="text" name="vin" value={formData.vin} onChange={handleFormChange}  id="vin" className="form-control" />
@@ -70,12 +93,13 @@ function AppointmentCreateForm(props){
                       </div>
 
                       <div className="form-floating mb-3">
-                        <input placeholder="date_time" required type="datetime-local" name="date_time" value={formData.date_time} onChange={handleFormChange}  id="date_time" className="form-control" />
-                        <label htmlFor="date_time">Date and Time</label>
+                        <input placeholder="date" required type="date" name="date" value={ formData.date } onChange={handleFormChange}  id="date" className="form-control" />
+                        <label htmlFor="date">Date</label>
                       </div>
-
-
-
+                      <div className="form-floating mb-3">
+                        <input placeholder="time" required type="time" name="time" value={ formData.time } onChange={handleFormChange}  id="time" className="form-control" />
+                        <label htmlFor="time">Time</label>
+                      </div>
 
                     <div className="mb-3">
                       <select required onChange={handleFormChange} name="technician" id="technician" value={formData.technician} className="form-select">

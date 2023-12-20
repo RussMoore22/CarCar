@@ -33,24 +33,13 @@ function TechCreateForm(props){
         }
     }
 
-    // const fetchData = async (event) => {
-    //     event.preventDefault();
-    //     const techUrl = 'http://localhost:8080/api/technicians/';
-    //     const response = await fetch(techUrl);
-    //     if (response.ok) {
-    //         const data = await response.json();
-    //         setConferences(data.conferences);
-    //       }
-    // }
-
-
 
     return (
         <div>
         <div className="row">
               <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
-                  <h1>Create a new hat</h1>
+                  <h1>Add a technician</h1>
                   <form onSubmit={handleSubmit} id="create-technician-form">
                   <div className="form-floating mb-3">
                         <input placeholder="first_name" required type="text" name="first_name" value={formData.first_name} onChange={handleFormChange}  id="first_name" className="form-control" />

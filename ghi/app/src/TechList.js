@@ -28,6 +28,8 @@ const handleDelete = async (id) => {
 }
 return (
     <div>
+        <h1>Technicians</h1>
+    <div>
     <table className="table table-striped">
     <thead>
     <tr>
@@ -51,9 +53,7 @@ return (
 
     </tbody>
 </table>
-    <div>
-        <Link to='/technicians/create' className="btn btn-info" >Create a new technician</Link>
-    </div>
+</div>
 </div>
 )
 

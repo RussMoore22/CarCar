@@ -31,10 +31,10 @@ function ServiceHistory(props) {
             const result = data.appointments
             for (const auto of result) {
                 if (vins.includes(auto.vin)){
-                    auto["isVip"] = "yes"
+                    auto["isVip"] = "Yes"
                 }
                 else {
-                    auto["isVip"] = "no"
+                    auto["isVip"] = "No"
                 }
             }
             console.log(result)
@@ -47,11 +47,13 @@ const handleSearchChange = async (event) => {
     const value = event.target.value;
     const inputName = event.target.name;
     setSearchVin(value);
+    setSubmittedVinSearch('');
+
 }
 
 const handleSearchSubmit = async () => {
     setSubmittedVinSearch(searchVin);
-    const resp = await requestAnimationFrame.json();
+    await requestAnimationFrame.json();
     getData();
 }
 
@@ -77,13 +79,16 @@ return (
                 Service History
             </h1>
         </div>
+
         <div class='input-group mb-3'>
+
             <input placeholder="Search by VIN..." required type="text" name="search" value={searchVin} onChange={handleSearchChange}  id="search" className="form-control" />
 
             <div>
                 <button onClick={() => handleSearchSubmit()} className="btn btn-outline-secondary" type="button">Search</button>
                 </div>
         </div>
+
     <div>
     <table className="table table-striped">
     <thead>
@@ -120,9 +125,6 @@ return (
 
     </tbody>
 </table>
-    <div>
-        <Link to='/appointments/create' className="btn btn-info" >Create a new appointment</Link>
-    </div>
 </div>
 </div>
 )
