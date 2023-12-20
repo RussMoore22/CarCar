@@ -2,8 +2,11 @@ import React, {useEffect, useState} from "react";
 import { Link } from 'react-router-dom';
 
 
-function ApptList(props) {
+function ServiceHistory(props) {
     const [appts, setAppts] = useState([])
+    const [searchVin, setSearchVin] = useState('')
+    const [submittedVinSearch, setSubmittedVinSearch] = useState('')
+
 
 
     async function getData() {
@@ -36,36 +39,30 @@ function ApptList(props) {
             }
             console.log(result)
             setAppts(result)
+            setSearchVin('')
             }
 
     }
+const handleSearchChange = async (event) => {
+    const value = event.target.value;
+    const inputName = event.target.name;
+    setSearchVin(value);
+}
 
-    const handleFinish = async (id) => {
-        const request = await fetch(
-            `http://localhost:8080/api/appointments/${id}/finish/`,
-            { method: "PUT" }
-        );
-        const resp = await request.json();
-        getData();
-    }
+const handleSearchSubmit = async () => {
+    setSubmittedVinSearch(searchVin);
+    const resp = await requestAnimationFrame.json();
+    getData();
+}
 
-    const handleCancel = async (id) => {
-        const request = await fetch(
-            `http://localhost:8080/api/appointments/${id}/cancel/`,
-            { method: "PUT" }
-        );
-        const resp = await request.json();
-        getData();
-    }
-
-    function getDate(utcDate) {
-        const event = new Date(utcDate)
-        return event.toLocaleDateString()
-    }
-    function getTime(utcDate) {
-        const event = new Date(utcDate)
-        return event.toLocaleTimeString()
-    }
+function getDate(utcDate) {
+    const event = new Date(utcDate)
+    return event.toLocaleDateString()
+}
+function getTime(utcDate) {
+    const event = new Date(utcDate)
+    return event.toLocaleTimeString()
+}
 
 useEffect(() => {
     getData()
@@ -74,6 +71,19 @@ useEffect(() => {
 
 
 return (
+    <div>
+        <div>
+            <h1>
+                Service History
+            </h1>
+        </div>
+        <div class='input-group mb-3'>
+            <input placeholder="Search by VIN..." required type="text" name="search" value={searchVin} onChange={handleSearchChange}  id="search" className="form-control" />
+
+            <div>
+                <button onClick={() => handleSearchSubmit()} className="btn btn-outline-secondary" type="button">Search</button>
+                </div>
+        </div>
     <div>
     <table className="table table-striped">
     <thead>
@@ -85,14 +95,14 @@ return (
         <th scope="col">Time</th>
         <th scope="col">Technician</th>
         <th scope="col">Reason</th>
-        <th scope="col">Change Status</th>
+        <th scope="col">Status</th>
 
     </tr>
     </thead>
     <tbody>
 
     {appts && appts.map(appt => {
-        if (appt.status ==="FINISHED" || appt.status ==="CANCELLED" || appt.status ==="CREATED" )
+        if ( appt.vin === submittedVinSearch || searchVin.length === 0)
         {
     return (
         <tr key={appt.id}>
@@ -103,11 +113,7 @@ return (
         <td>{ getTime(appt.date_time) }</td>
         <td>{ appt.technician.first_name } { appt.technician.last_name }</td>
         <td>{ appt.reason }</td>
-        <td>
-        <button onClick={() => handleCancel(appt.id)} className="btn btn-danger">Cancel</button>
-        <button onClick={() => handleFinish(appt.id)} className="btn btn-success">Finish</button>
-
-        </td>
+        <td>{ appt.status }</td>
         </tr>
     );
     }})}
@@ -118,7 +124,10 @@ return (
         <Link to='/appointments/create' className="btn btn-info" >Create a new appointment</Link>
     </div>
 </div>
+</div>
 )
 
 }
-export default ApptList;
+
+
+export default ServiceHistory;
