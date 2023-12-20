@@ -83,7 +83,7 @@ function AppointmentCreateForm(props){
                         {techs.map(tech => {
                             return (
                                 <option key={tech.id} value={tech.id}>
-                                    {tech.id}
+                                    {tech.employee_id}
                                 </option>
                             );
                         })}
