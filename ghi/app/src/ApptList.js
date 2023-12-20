@@ -73,45 +73,48 @@ function ApptList(props) {
 
   return (
     <div>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">VIN</th>
-            <th scope="col">Is VIP?</th>
-            <th scope="col">Customer</th>
-            <th scope="col">Date</th>
-            <th scope="col">Time</th>
-            <th scope="col">Technician</th>
-            <th scope="col">Reason</th>
-            <th scope="col">Change Status</th>
+      <h1>Service Appointments</h1>
+      <div>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">VIN</th>
+              <th scope="col">Is VIP?</th>
+              <th scope="col">Customer</th>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+              <th scope="col">Technician</th>
+              <th scope="col">Reason</th>
+              <th scope="col">Change Status</th>
 
-          </tr>
-        </thead>
-        <tbody>
+            </tr>
+          </thead>
+          <tbody>
 
-          {appts && appts.map(appt => {
-            if (appt.status === "FINISHED" || appt.status === "CANCELLED" || appt.status === "CREATED") {
-              return (
-                <tr key={appt.id}>
-                  <td>{appt.vin}</td>
-                  <td>{appt.isVip}</td>
-                  <td>{appt.customer}</td>
-                  <td>{getDate(appt.date_time)}</td>
-                  <td>{getTime(appt.date_time)}</td>
-                  <td>{appt.technician.first_name} {appt.technician.last_name}</td>
-                  <td>{appt.reason}</td>
-                  <td>
-                    <button onClick={() => handleCancel(appt.id)} className="btn btn-danger">Cancel</button>
-                    <button onClick={() => handleFinish(appt.id)} className="btn btn-success">Finish</button>
+            {appts && appts.map(appt => {
+              if (appt.status === "FINISHED" || appt.status === "CANCELLED" || appt.status === "CREATED") {
+                return (
+                  <tr key={appt.id}>
+                    <td>{appt.vin}</td>
+                    <td>{appt.isVip}</td>
+                    <td>{appt.customer}</td>
+                    <td>{getDate(appt.date_time)}</td>
+                    <td>{getTime(appt.date_time)}</td>
+                    <td>{appt.technician.first_name} {appt.technician.last_name}</td>
+                    <td>{appt.reason}</td>
+                    <td>
+                      <button onClick={() => handleCancel(appt.id)} className="btn btn-danger">Cancel</button>
+                      <button onClick={() => handleFinish(appt.id)} className="btn btn-success">Finish</button>
 
-                  </td>
-                </tr>
-              );
-            }
-          })}
+                    </td>
+                  </tr>
+                );
+              }
+            })}
 
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 
