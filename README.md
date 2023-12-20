@@ -23,6 +23,8 @@ docker-compose up
 - After running these commands, make sure all of your Docker containers are running
 
 - View the project in the browser: http://localhost:3000/
+* Person 1 - Russ Moore - Service
+* Person 2 - Which microservice?
 
 ## Design
 

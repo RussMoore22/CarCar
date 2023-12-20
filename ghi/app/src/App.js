@@ -11,6 +11,14 @@ import SaleHistory from './SaleHistory';
 import ManufacturerList from './ManufacturerList';
 import ManufacturerForm from './ManufacturerForm';
 import VehicleList from './VehicleList';
+import TechCreateForm from './TechCreateForm';
+import TechList from './TechList';
+import AppointmentCreateForm from './AppointmentCreateForm';
+import ApptList from './ApptList';
+import ServiceHistory from './ServiceHistory';
+import VehicleModelCreateForm from './VehicleModelCreateForm';
+import AutomobileList from './AutomobileList';
+import AutomobileCreateForm from './AutomobileCreate';
 
 function App() {
   return (
@@ -39,6 +47,14 @@ function App() {
           <Route path="vehicles">
             <Route index element={<VehicleList />} />
           </Route>
+          <Route path="/technicians" element={<TechList />} />
+          <Route path="/technicians/create" element={<TechCreateForm />} />
+          <Route path="/appointments/create" element={<AppointmentCreateForm />} />
+          <Route path="/appointments" element={<ApptList />} />
+          <Route path="/appointments/history" element={<ServiceHistory />} />
+          <Route path="/models/create" element={<VehicleModelCreateForm />} />
+          <Route path="/automobiles/" element={<AutomobileList />} />
+          <Route path="/automobiles/create" element={<AutomobileCreateForm />} />
         </Routes>
       </div>
     </BrowserRouter>
