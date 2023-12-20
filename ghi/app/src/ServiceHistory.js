@@ -66,7 +66,7 @@ function ServiceHistory(props) {
   return (
     <div>
       <h1>Service History</h1>
-      <div class='input-group mb-3'>
+      <div className='input-group mb-3'>
         <input placeholder="Search by VIN..." required type="text" name="search" value={searchVin} onChange={handleSearchChange} id="search" className="form-control" />
         <div>
           <button onClick={() => handleSearchSubmit()} className="btn btn-outline-secondary" type="button">Search</button>
