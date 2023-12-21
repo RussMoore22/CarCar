@@ -17,7 +17,6 @@ function ServiceHistory(props) {
 
     else {
       const vinData = await vinResponse.json();
-      console.log(vinData.autos)
       let vins = []
       for (const auto of vinData.autos) {
         vins.push(auto.vin)
@@ -28,7 +27,6 @@ function ServiceHistory(props) {
         if (vins.includes(auto.vin)) { auto["isVip"] = "Yes" }
         else { auto["isVip"] = "No" }
       }
-      console.log(result)
       setAppts(result)
       setSearchVin('')
     }
@@ -68,7 +66,7 @@ function ServiceHistory(props) {
   return (
     <div>
       <h1>Service History</h1>
-      <div class='input-group mb-3'>
+      <div className='input-group mb-3'>
         <input placeholder="Search by VIN..." required type="text" name="search" value={searchVin} onChange={handleSearchChange} id="search" className="form-control" />
         <div>
           <button onClick={() => handleSearchSubmit()} className="btn btn-outline-secondary" type="button">Search</button>

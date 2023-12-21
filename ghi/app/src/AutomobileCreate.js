@@ -68,7 +68,7 @@ function AutomobileCreateForm(props) {
               </div>
               <div className="form-floating mb-3">
                 <input placeholder="vin" required type="text" name="vin" value={formData.vin} onChange={handleFormChange} id="vin" className="form-control" />
-                <label htmlFor="vin">VIN</label>
+                <label htmlFor="vin">VIN... <span className="text-danger">{ (formData.vin.length > 17) ? "must be under 17 characters or less!" : "" }</span></label>
               </div>
 
               <div className="mb-3">
