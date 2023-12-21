@@ -14,18 +14,25 @@ function TechList(props) {
       setTechs(data.techs)
     }
   }
+
+
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    const id = event.target.value;
+    const deleteUrl = `http://localhost:8080/api/technicians/${id}/`
+    const fetchOptions = {
+        method: "DELETE"
+    }
+    const response = await fetch(deleteUrl, fetchOptions)
+    if (response.ok) {
+        getData();
+    }
+}
+
   useEffect(() => {
     getData()
   }, []);
 
-  const handleDelete = async (id) => {
-    const request = await fetch(
-      `http://localhost:8080/api/technicians/${id}/`,
-      { method: "DELETE" }
-    );
-    const resp = await request.json();
-    getData();
-  }
   return (
     <div>
       <h1>Technicians</h1>
@@ -36,6 +43,7 @@ function TechList(props) {
               <th scope="col">Employee ID</th>
               <th scope="col">First Name</th>
               <th scope="col">Last Name</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -46,6 +54,7 @@ function TechList(props) {
                   <td>{tech.employee_id}</td>
                   <td>{tech.first_name}</td>
                   <td>{tech.last_name}</td>
+                  <td><button onClick={handleDelete} className="btn btn-danger" value={tech.id}>Remove</button></td>
                 </tr>
               );
             })}

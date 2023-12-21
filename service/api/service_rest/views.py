@@ -53,13 +53,19 @@ def api_technicians(request):
             safe=False
         )
     else:
-        content = json.loads(request.body)
-        tech = Technician.objects.create(**content)
-        return JsonResponse(
-            tech,
-            encoder=TechnicianEncoder,
-            safe=False,
-        )
+        try:
+            content = json.loads(request.body)
+            tech = Technician.objects.create(**content)
+            return JsonResponse(
+                tech,
+                encoder=TechnicianEncoder,
+                safe=False,
+            )
+        except Exception as error:
+            return JsonResponse(
+                {"message": f"{error}"},
+                status=400
+            )
 
 
 @require_http_methods(["DELETE"])
@@ -68,7 +74,10 @@ def api_technician_delete(request, pk):
         count, _ = Technician.objects.filter(id=pk).delete()
         return JsonResponse({"delete": count > 0})
     except Technician.DoesNotExist:
-        return JsonResponse({"message": "Does not exist"})
+        return JsonResponse(
+            {"message": "Does not exist"},
+            status=400
+        )
 
 
 @require_http_methods(["GET", "POST"])
@@ -81,15 +90,21 @@ def api_appointments(request):
             safe=False
         )
     else:
-        content = json.loads(request.body)
-        tech = Technician.objects.get(id=content["technician"])
-        content["technician"] = tech
-        tech = Appointment.objects.create(**content)
-        return JsonResponse(
-            tech,
-            encoder=AppointmentEncoder,
-            safe=False,
-        )
+        try:
+            content = json.loads(request.body)
+            tech = Technician.objects.get(id=content["technician"])
+            content["technician"] = tech
+            tech = Appointment.objects.create(**content)
+            return JsonResponse(
+                    tech,
+                    encoder=AppointmentEncoder,
+                    safe=False,
+            )
+        except Exception as error:
+            return JsonResponse(
+                {"message": f"{error}"},
+                status=400
+            )
 
 @require_http_methods("DELETE")
 def api_appointment_delete(request, pk):
@@ -97,7 +112,10 @@ def api_appointment_delete(request, pk):
         count, _ = Appointment.objects.filter(id=pk).delete()
         return JsonResponse({"delete": count > 0})
     except Technician.DoesNotExist:
-        return JsonResponse({"message": "Does not exist"})
+        return JsonResponse(
+            {"message": "Does not exist"},
+            status=400
+        )
 
 
 @require_http_methods("PUT")
@@ -115,22 +133,32 @@ def api_appointment_cancel(request, pk):
 
 @require_http_methods("PUT")
 def api_appointment_finish(request, pk):
-    Appointment.objects.filter(id=pk).update(status="FINISHED")
-    appt = Appointment.objects.get(id=pk)
-    return JsonResponse(
-        appt,
-        encoder=AppointmentEncoder,
-        safe=False
-    )
+    try:
+        Appointment.objects.filter(id=pk).update(status="FINISHED")
+        appt = Appointment.objects.get(id=pk)
+        return JsonResponse(
+            appt,
+            encoder=AppointmentEncoder,
+            safe=False
+        )
+    except Exception as error:
+        return JsonResponse(
+            {"message": f"{error}"},
+            status=400
+        )
 
 
 @require_http_methods(["GET"])
 def api_automobileVOs_list(request):
-    autos = AutomobileVO.objects.all()
-    return JsonResponse(
-        {"autos": autos},
-        encoder=AutomobileVOEncoder,
-        safe=False
+    try:
+        autos = AutomobileVO.objects.all()
+        return JsonResponse(
+            {"autos": autos},
+            encoder=AutomobileVOEncoder,
+            safe=False
+            )
+    except Exception as error:
+        return JsonResponse(
+            {"message": f"{error}"},
+            status=400
         )
-
-
