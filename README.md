@@ -23,8 +23,6 @@ $ docker-compose up
 - After running these commands, make sure all of your Docker containers are running.
 
 - View the project in the browser: http://localhost:3000/
-* Person 1 - Russ Moore - Service
-* Person 2 - Kyle Hodges - Sales
 
 ## Design
 
@@ -39,13 +37,13 @@ This program contains three primary API's serving three different microservices 
 
 ### Inventory microservice
 MANUFACTURER:
-| Action | Method | URL|
-| ------ | ------ | -- |
-| List Manufacturers | GET | http://localhost:8100/api/manufacturers/ |
-| Create Manufacturer | POST | http://localhost:8100/api/manufacturers/ |
-| Get Manufacturer detail | GET | http://localhost:8100/api/manufacturers/id/ |
-| Update Manufacturer | PUT | http://localhost:8100/api/manufacturers/id/ |
-| Delete Manufacturer | DELETE | http://localhost:8100/api/manufacturers/id/ |
+|        Action           | Method |             URL                             |
+| ----------------------- | ------ | ------------------------------------------- |
+| List Manufacturers      | GET    | http://localhost:8100/api/manufacturers/    |
+| Create Manufacturer     | POST   | http://localhost:8100/api/manufacturers/    |
+| Get Manufacturer detail | GET    | http://localhost:8100/api/manufacturers/id/ |
+| Update Manufacturer     | PUT    | http://localhost:8100/api/manufacturers/id/ |
+| Delete Manufacturer     | DELETE | http://localhost:8100/api/manufacturers/id/ |
 
 These API endpoints serves as a part of the Inventory microservice that enables a user to create a new manufacturer, recieve a list of manfucaturers, recieve specific details on an individual manufacturer, update those details, and lastly, to delete a specific manufacturer.
 
@@ -103,13 +101,13 @@ http://localhost:8100/api/manufacturers/1/
 ```
 
 VEHICLE MODELS:
-| Action | Method | URL|
-| ------ | ------ | -- |
-| List Vehicle Models | GET | http://localhost:8100/api/models/ |
-| Create Model | POST | http://localhost:8100/api/models/ |
-| Get Model detail | GET | http://localhost:8100/api/models/id/ |
-| Update Model | PUT | http://localhost:8100/api/models/id/ |
-| Delete Model | DELETE | http://localhost:8100/api/models/id/ |
+|       Action        | Method |              URL                     |
+| ------------------- | ------ | ------------------------------------ |
+| List Vehicle Models | GET    | http://localhost:8100/api/models/    |
+| Create Model        | POST   | http://localhost:8100/api/models/    |
+| Get Model detail    | GET    | http://localhost:8100/api/models/id/ |
+| Update Model        | PUT    | http://localhost:8100/api/models/id/ |
+| Delete Model        | DELETE | http://localhost:8100/api/models/id/ |
 
 These API endpoints serves as a part of the Inventory microservice that enables a user to create a new vehicle model, recieve a list of models, recieve specific details on an individual vehicle model, update those details, and lastly, to delete a specific model.
 
@@ -426,10 +424,10 @@ Example:
 The Sales microservice tracks, stores, and implements several facets of the program.  Sales microservice has a Sale model, Salesperson model, Customer model, and an AutomobileVO model.  The models are all manipulated directly in the Sales microservice with the exception of the AutomobileVO model which receives its data via a poller located in [sales/poll/poller.py] that grabs automobile data from the Inventory microservice Automobile model. Salesperson, Customer, and AutomobileVO all serve as Foriegn Keys for the Sale model.
 
 CUSTOMER:
-| Action | Method | URL|
-| ------ | ------ | -- |
-| List Customers | GET | http://localhost:8090/api/customers/ |
-| Create Customer | POST | http://localhost:8090/api/customers/ |
+|       Action    | Method |             URL                         |
+| --------------- | ------ | --------------------------------------- |
+| List Customers  | GET    | http://localhost:8090/api/customers/    |
+| Create Customer | POST   | http://localhost:8090/api/customers/    |
 | Delete Customer | DELETE | http://localhost:8090/api/customers/id/ |
 
 These API endpoints serves as a part of the Sales microservice that enables a user to create a new customer, recieve a list of customers, and to delete a specific customer.
@@ -472,10 +470,10 @@ http://localhost:8100/api/customers/1/
 ```
 
 SALESPERSON:
-| Action | Method | URL|
-| ------ | ------ | -- |
-| List Salespeople | GET | http://localhost:8090/api/salespeople/ |
-| Create Salesperson | POST | http://localhost:8090/api/salespeople/ |
+|       Action       | Method |                 URL                       |
+| ------------------ | ------ | ----------------------------------------- |
+| List Salespeople   | GET    | http://localhost:8090/api/salespeople/    |
+| Create Salesperson | POST   | http://localhost:8090/api/salespeople/    |
 | Delete Salesperson | DELETE | http://localhost:8090/api/salespeople/id/ |
 
 These API endpoints serves as a part of the Sales microservice that enables a user to create a new salesperson, recieve a list of salespeople, and to delete a specific salesperson.
@@ -517,10 +515,10 @@ http://localhost:8100/api/salespeople/1/
 
 
 SALE:
-| Action | Method | URL|
-| ------ | ------ | -- |
-| List Sales | GET | http://localhost:8090/api/sales/ |
-| Create Sale | POST | http://localhost:8090/api/sales/ |
+|   Action    | Method |           URL                       |
+| ----------- | ------ | ----------------------------------- |
+| List Sales  | GET    | http://localhost:8090/api/sales/    |
+| Create Sale | POST   | http://localhost:8090/api/sales/    |
 | Delete Sale | DELETE | http://localhost:8090/api/sales/id/ |
 
 These API endpoints serves as a part of the Sales microservice that enables a user to create a new sale, recieve a list of sales, and to delete a specific sale.
