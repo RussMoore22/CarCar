@@ -14,17 +14,17 @@ Team:
 2. Clone the forked repository onto your local computer:
 git clone https://gitlab.com/RussMoore/project-beta
 
-3. Build and run the project using Docker with these commands:
+3. Build and run the project using Docker with these commands in the terminal:
 ```
-docker volume create beta-data
-docker-compose build
-docker-compose up
+$docker volume create beta-data
+$docker-compose build
+$docker-compose up
 ```
-- After running these commands, make sure all of your Docker containers are running
+- After running these commands, make sure all of your Docker containers are running.
 
 - View the project in the browser: http://localhost:3000/
 * Person 1 - Russ Moore - Service
-* Person 2 - Which microservice?
+* Person 2 - Kyle Hodges - Sales
 
 ## Design
 

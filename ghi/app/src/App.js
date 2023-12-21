@@ -19,6 +19,8 @@ import ServiceHistory from './ServiceHistory';
 import VehicleModelCreateForm from './VehicleModelCreateForm';
 import AutomobileList from './AutomobileList';
 import AutomobileCreateForm from './AutomobileCreate';
+import ErrorPage from './ErrorPage';
+
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
       <Nav />
       <div className="container">
         <Routes>
+          <Route path="*" element={<ErrorPage />} />
 
           <Route path="/" element={<MainPage />} />
 
