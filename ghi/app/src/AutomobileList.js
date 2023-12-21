@@ -18,6 +18,19 @@ function AutomobileList(props) {
     }
   }
 
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    const vin = event.target.value;
+    const deleteUrl = `http://localhost:8100/api/automobiles/${vin}/`
+    const fetchOptions = {
+        method: "DELETE"
+    }
+    const response = await fetch(deleteUrl, fetchOptions)
+    if (response.ok) {
+        getData();
+    }
+}
+
   useEffect(() => {
     getData()
 
@@ -38,6 +51,7 @@ function AutomobileList(props) {
             <th scope="col">Model</th>
             <th scope="col">Manufacturer</th>
             <th scope="col">Sold</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -51,6 +65,7 @@ function AutomobileList(props) {
                 <td>{auto.model.name}</td>
                 <td>{auto.model.manufacturer.name}</td>
                 <td>{auto.sold ? 'Yes' : 'No'}</td>
+                <td><button onClick={handleDelete} className="btn btn-danger" value={auto.vin}>Remove</button></td>
               </tr>
             );
           })}

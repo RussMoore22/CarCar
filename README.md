@@ -16,9 +16,9 @@ git clone https://gitlab.com/RussMoore/project-beta
 
 3. Build and run the project using Docker with these commands in the terminal:
 ```
-$docker volume create beta-data
-$docker-compose build
-$docker-compose up
+$ docker volume create beta-data
+$ docker-compose build
+$ docker-compose up
 ```
 - After running these commands, make sure all of your Docker containers are running.
 
@@ -181,13 +181,13 @@ http://localhost:8100/api/models/1/
 ```
 
 AUTOMOBILES:
-| Action | Method | URL|
-| ------ | ------ | -- |
-| List Automobiles | GET | http://localhost:8100/api/automobiles/ |
-| Create Automobile | POST | http://localhost:8100/api/automobiles/ |
-| Get Automobile detail | GET | http://localhost:8100/api/automobiles/id/ |
-| Update Automobile | PUT | http://localhost:8100/api/automobiles/id/ |
-| Delete Automobile | DELETE | http://localhost:8100/api/automobiles/id/ |
+|       Action          | Method |                 URL                              |
+| --------------------- | ------ | ------------------------------------------------ |
+| List Automobiles      | GET    | http://localhost:8100/api/automobiles/           |
+| Create Automobile     | POST   | http://localhost:8100/api/automobiles/           |
+| Get Automobile detail | GET    | http://localhost:8100/api/automobiles/<str:vin>/ |
+| Update Automobile     | PUT    | http://localhost:8100/api/automobiles/<str:vin>/ |
+| Delete Automobile     | DELETE | http://localhost:8100/api/automobiles/<str:vin>/ |
 
 These API endpoints serves as a part of the Inventory microservice that enables a user to create a new automobile, recieve a list of automobiles, recieve specific details on an individual automobile, update those details, and lastly, to delete a specific automobile.
 
@@ -234,7 +234,7 @@ Example:
 ```
 
 GET AUTOMOBILE DETAIL:
-Following this end-point will get the deatils of a specific automobile that exists in the database. The request utilizes the GET method and only the id of the automobile is required. The URL used to see the below example's detail would be http://localhost:8100/api/automobiles/1/
+Following this end-point will get the deatils of a specific automobile that exists in the database. The request utilizes the GET method and only the vin of the automobile is required. The URL used to see the below example's detail would be http://localhost:8100/api/automobiles/1C3CC5FB2AN120174/
 ```
 Example:
 {
@@ -259,7 +259,7 @@ Example:
 ```
 
 UPDATE AUTOMOBILE DETAIL:
-Following this end-point will allow the user to update deatils of a specific automobile in the database. The request utilizes the PUT method and only the id of the automobile is required. The URL used to update the below example's detail would be http://localhost:8100/api/automobiles/1/
+Following this end-point will allow the user to update deatils of a specific automobile in the database. The request utilizes the PUT method and only the vin of the automobile is required. The URL used to update the below example's detail would be http://localhost:8100/api/automobiles/1C3CC5FB2AN120174/
 ```
 Example:
 {
@@ -270,10 +270,10 @@ Example:
 ```
 
 DELETE AUTOMOBILE:
-Deleting an automobile can be acheived by utilizing the "Delete Automobile" end-point. The DELETE request uses the same end-point as detail and update. The user only needs to know the id of the specific automobile that requires deletion.
+Deleting an automobile can be acheived by utilizing the "Delete Automobile" end-point. The DELETE request uses the same end-point as detail and update. The user only needs to know the vin of the specific automobile that requires deletion.
 ```
 Example:
-http://localhost:8100/api/automobiles/1/
+http://localhost:8100/api/automobiles/1C3CC5FB2AN120174/
 ```
 
 ### Service microservice

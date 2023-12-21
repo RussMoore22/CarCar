@@ -65,6 +65,8 @@ function ApptList(props) {
     return event.toLocaleTimeString()
   }
 
+
+
   useEffect(() => {
     getData()
 
@@ -92,7 +94,7 @@ function ApptList(props) {
           <tbody>
 
             {appts && appts.map(appt => {
-              if (appt.status === "FINISHED" || appt.status === "CANCELLED" || appt.status === "CREATED") {
+              if (appt.status.toUpperCase() === "CREATED") {
                 return (
                   <tr key={appt.id}>
                     <td>{appt.vin}</td>

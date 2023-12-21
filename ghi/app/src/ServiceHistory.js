@@ -59,6 +59,19 @@ function ServiceHistory(props) {
     return event.toLocaleTimeString()
   }
 
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    const id = event.target.value;
+    const deleteUrl = `http://localhost:8080/api/appointments/${id}/`
+    const fetchOptions = {
+        method: "DELETE"
+    }
+    const response = await fetch(deleteUrl, fetchOptions)
+    if (response.ok) {
+        getData();
+    }
+}
+
   useEffect(() => {
     getData()
   }, []);
@@ -84,6 +97,7 @@ function ServiceHistory(props) {
               <th scope="col">Technician</th>
               <th scope="col">Reason</th>
               <th scope="col">Status</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -99,6 +113,7 @@ function ServiceHistory(props) {
                     <td>{appt.technician.first_name} {appt.technician.last_name}</td>
                     <td>{appt.reason}</td>
                     <td>{appt.status}</td>
+                    <td><button onClick={handleDelete} className="btn btn-danger" value={appt.id}>Remove</button></td>
                   </tr>
                 );
               }
