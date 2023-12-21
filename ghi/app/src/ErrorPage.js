@@ -1,7 +1,7 @@
 
 
 function ErrorPage() {
-    console.log()
+    console.log("This Page Does Not Exist")
 
     return (
         <div>

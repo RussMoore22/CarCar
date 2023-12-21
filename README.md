@@ -278,8 +278,148 @@ http://localhost:8100/api/automobiles/1/
 
 ### Service microservice
 
-Explain your models and integration with the inventory
-microservice, here.
+
+The Service microservice tracks, stores, and implements several facets of the program.  Sales microservice has a Technician model, Appointment model, and an AutomobileVO model.  The models are all manipulated directly in the Service microservice with the exception of the AutomobileVO model which receives its data via a poller located in [service/poll/poller.py] that grabs automobile data from the Inventory microservice Automobile model. Technician is a foreign key of the Appointment model (making an appointment requires the user to assign a technician to be responsible for the servicing of the vehicle). The customer name is a custom text entry that does not link the customer name to an existing customer in a database.
+
+Technicians:
+| Action | Method | URL|
+| ------------------ | ------ | ----------------------------------------------- |
+| List Technicians   | GET    | http://localhost:8080/api/technicians/          |
+| Create Technicians | POST   | http://localhost:8080/api/technicians/          |
+| Delete Technicians | DELETE | http://localhost:8080/api/technicians/<int:id>/ |
+
+These API endpoints serves as a part of the Service microservice that enables a user to create a new technician, recieve a list of technicians, and to delete a specific technician.
+
+LIST TECHNICIANS:
+Following this end-point will get a list of all of the technician that exist in the database. The request utilizes the GET method, therefore, no information is required.
+```
+Example:
+{
+	"techs": [
+		{
+			"first_name": "Hank",
+			"last_name": "Hill",
+			"employee_id": "hhill",
+			"id": 1
+		}
+	]
+}
+```
+
+CREATE TECHNICIAN:
+This end-point allows a user to add a customer to the database. It has required data input. All new customers require a "first_name", "last_name", and "employee_id".
+
+```
+Example:
+{
+"first_name": "Hank",
+"last_name": "Hill",
+"employee_id": "hhill"
+}
+```
+
+DELETE TECHNICIAN:
+Deleting a technician can be acheived by utilizing the "Delete Technician" end-point. The DELETE request uses the same end-point as list and create with the added id at the end. The user only needs to know the id of the specific technician that requires deletion.
+```
+Example:
+http://localhost:8080/api/technicians/1/
+```
+
+Appointments:
+|              Action                     | Method |                 URL                              |
+| --------------------------------------- | ------ | ------------------------------------------------ |
+| List Appointments                       | GET    | http://localhost:8080/api/appointments/          |
+| Create Appointments                     | POST   | http://localhost:8080/api/appointments/          |
+| Delete Appointment                      | DELETE | http://localhost:8080/api/appointments/2/        |
+| Set Appointments Status To 'cancelled'  | PUT    | http://localhost:8080/api/appointments/1/cancel/ |
+| Set Appointments Status To 'finished'   | PUT    | http://localhost:8080/api/appointments/1/finish/ |
+
+These API endpoints serves as a part of the Service microservice that enables a user to create a new Appointment, recieve a list of Appointments, delete a specific Appointment, set a specific appointment status to 'cancelled' and set a specific appointment status to 'finished'.
+
+LIST APPOINTMENTS:
+Following this end-point will get a list of all of the appointments that exist in the database. The request utilizes the GET method, therefore, no information is required.
+```
+Example:
+{
+	"appointments": [
+		{
+			"id": 1,
+			"date_time": "2023-12-21T21:00:00+00:00",
+			"customer": "Bobby Hill",
+			"reason": "wont start",
+			"status": "CREATED",
+			"vin": "12345678901234567",
+			"technician": {
+				"first_name": "Hank",
+				"last_name": "Hill",
+				"employee_id": "hhill",
+				"id": 1
+			}
+		}
+	]
+}
+```
+
+CREATE APPOINTMENTS:
+This end-point allows a user to add an appointment to the database. It has required data input. All new appointments require a "date_time", "reason", "status", "vin", "customer", and a "technician" id.
+
+```
+Example:
+{
+"date_time": "2024-01-01T12:30:00",
+"reason": "car is making squeek",
+"status": "CREATED",
+"vin": "1C3CC5FB2AN120174",
+"customer": "Bobby Hill",
+ "technician": "1"
+}
+```
+
+DELETE TECHNICIAN:
+Deleting an appointment can be acheived by utilizing the "Delete Technician" end-point. The DELETE request uses the same end-point as list and create with the added id at the end. The user only needs to know the id of the specific appointment that requires deletion.
+```
+Example:
+http://localhost:8080/api/appointments/1/
+```
+
+SET APPOINTMENT STATUS TO 'cancelled':
+Setting an appointment can be acheived by utilizing the "Set Appointments Status To 'cancelled'" end-point. The PUT request uses the same end-point as delete with the added 'cancel' at the end. The user only needs to know the id of the specific appointment that requires the status code change, similar to the delete end-point.
+
+```
+Example:
+http://localhost:8080/api/appointments/1/cancel/
+```
+
+SET APPOINTMENT STATUS TO 'finished':
+Setting an appointment can be acheived by utilizing the "Set Appointments Status To 'finished'" end-point. The PUT request uses the same end-point as delete with the added 'finish' at the end. The user only needs to know the id of the specific appointment that requires the status code change, similar to the delete end-point.
+
+```
+Example:
+http://localhost:8080/api/appointments/1/finish/
+```
+
+
+AUTOMOBILESVOS:
+|      Action          | Method |                URL                        |
+| -------------------- | ------ | ----------------------------------------- |
+| List AutomobileVOs   | GET    | http://localhost:8080/api/automobiles/    |
+
+
+This API endpoint serves as a part of the Service microservice that enables a user to list the AutomobileVOs. This is primarily used by the front end to check if a vin exists in the database.
+
+LIST AUTOMOBILEVOS:
+Following this end-point will get a list of all of the automobileVOs that exist in the database. The request utilizes the GET method, therefore, no information is required.
+```
+Example:
+{
+	"autos": [
+		{
+			"vin": "1C3CC5FB2AN120814",
+			"sold": true
+		}
+	]
+}
+```
 
 ### Sales microservice
 
