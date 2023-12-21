@@ -279,10 +279,10 @@ http://localhost:8100/api/automobiles/1/
 ### Service microservice
 
 
-The Service microservice tracks, stores, and implements several facets of the program.  Sales microservice has a Technician model, Appointment model, and an AutomobileVO model.  The models are all manipulated directly in the Service microservice with the exception of the AutomobileVO model which receives its data via a poller located in [service/poll/poller.py] that grabs automobile data from the Inventory microservice Automobile model. Technician is a foreign key of the Appointment model (making an appointment requires the user to assign a technician to be responsible for the servicing of the vehicle). The customer name is a custom text entry that does not link the customer name to an existing customer in a database.
+The Service microservice tracks, stores, and implements several facets of the program. Service microservice has a Technician model, Appointment model, and an AutomobileVO model.  The models are all manipulated directly in the Service microservice with the exception of the AutomobileVO model which receives its data via a poller located in [service/poll/poller.py] that grabs automobile data from the Inventory microservice's Automobile model. Technician is a foreign key of the Appointment model (making an appointment requires the user to assign a technician to be responsible for the servicing of the vehicle). The customer name is a custom text entry that does not link the customer name to an existing customer in a database.
 
 Technicians:
-| Action | Method | URL|
+|        Action      | Method |                    URL                          |
 | ------------------ | ------ | ----------------------------------------------- |
 | List Technicians   | GET    | http://localhost:8080/api/technicians/          |
 | Create Technicians | POST   | http://localhost:8080/api/technicians/          |
@@ -326,13 +326,13 @@ http://localhost:8080/api/technicians/1/
 ```
 
 Appointments:
-|              Action                     | Method |                 URL                              |
-| --------------------------------------- | ------ | ------------------------------------------------ |
-| List Appointments                       | GET    | http://localhost:8080/api/appointments/          |
-| Create Appointments                     | POST   | http://localhost:8080/api/appointments/          |
-| Delete Appointment                      | DELETE | http://localhost:8080/api/appointments/2/        |
-| Set Appointments Status To 'cancelled'  | PUT    | http://localhost:8080/api/appointments/1/cancel/ |
-| Set Appointments Status To 'finished'   | PUT    | http://localhost:8080/api/appointments/1/finish/ |
+|              Action                     | Method |                    URL                                  |
+| --------------------------------------- | ------ | ------------------------------------------------------- |
+| List Appointments                       | GET    | http://localhost:8080/api/appointments/                 |
+| Create Appointments                     | POST   | http://localhost:8080/api/appointments/                 |
+| Delete Appointment                      | DELETE | http://localhost:8080/api/appointments/<int:id>/        |
+| Set Appointments Status To 'cancelled'  | PUT    | http://localhost:8080/api/appointments/<int:id>/cancel/ |
+| Set Appointments Status To 'finished'   | PUT    | http://localhost:8080/api/appointments/<int:id>/finish/ |
 
 These API endpoints serves as a part of the Service microservice that enables a user to create a new Appointment, recieve a list of Appointments, delete a specific Appointment, set a specific appointment status to 'cancelled' and set a specific appointment status to 'finished'.
 
@@ -399,7 +399,7 @@ http://localhost:8080/api/appointments/1/finish/
 ```
 
 
-AUTOMOBILESVOS:
+AutomobileVOs:
 |      Action          | Method |                URL                        |
 | -------------------- | ------ | ----------------------------------------- |
 | List AutomobileVOs   | GET    | http://localhost:8080/api/automobiles/    |
