@@ -11,8 +11,8 @@ function Nav() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Inventory</a>
-                <ul class="dropdown-menu">
+                <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Inventory</a>
+                <ul className="dropdown-menu">
                   <li className="nav-item">
                     <NavLink className="dropdown-item" to="/manufacturers" end style={{fontWeight: "bold"}}>Manufacturers</NavLink>
                   </li>
@@ -34,8 +34,8 @@ function Nav() {
                 </ul>
             </li>
             <li className="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Sales</a>
-                <ul class="dropdown-menu">
+                <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Sales</a>
+                <ul className="dropdown-menu">
                   <li className="nav-item">
                     <NavLink className="dropdown-item" to="/sales" end style={{fontWeight: "bold"}}>Sales</NavLink>
                   </li>
@@ -60,8 +60,8 @@ function Nav() {
                 </ul>
             </li>
             <li className="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Service</a>
-                <ul class="dropdown-menu">
+                <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Service</a>
+                <ul className="dropdown-menu">
                   <li className="nav-item">
                     <NavLink className="dropdown-item" to="/technicians" end style={{fontWeight: "bold"}}>Technicians</NavLink>
                   </li>
