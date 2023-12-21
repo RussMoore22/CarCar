@@ -43,7 +43,6 @@ function ServiceHistory(props) {
 
   const handleSearchSubmit = async () => {
     setSubmittedVinSearch(searchVin);
-    await requestAnimationFrame.json();
     getData();
   }
 
@@ -101,7 +100,7 @@ function ServiceHistory(props) {
             </tr>
           </thead>
           <tbody>
-            {appts && appts.map(appt => {
+            {appts && appts.filter((appt) => appt.vin === submittedVinSearch ).map(appt => {
               if (appt.vin === submittedVinSearch || searchVin.length === 0) {
                 return (
                   <tr key={appt.id}>
