@@ -92,12 +92,18 @@ def api_list_sales(request):
 @require_http_methods(["GET", "DELETE"])
 def api_show_sale(request, pk):
     if request.method == "GET":
-        sale = Sale.objects.get(id=pk)
-        return JsonResponse(
-            sale,
-            encoder=SaleListEncoder,
-            safe=False
-        )
+        try:
+            sale = Sale.objects.get(id=pk)
+            return JsonResponse(
+                sale,
+                encoder=SaleListEncoder,
+                safe=False
+            )
+        except Sale.DoesNotExist:
+            return JsonResponse(
+                {"message": "Sale does not exist"},
+                status=400
+            )
     else:
         try:
             sale = Sale.objects.get(id=pk)
@@ -134,12 +140,18 @@ def api_salesperson_list(request):
 @require_http_methods(["GET", "DELETE"])
 def api_salesperson_show(request, pk):
     if request.method == "GET":
-        person = Salesperson.objects.get(id=pk)
-        return JsonResponse(
-            person,
-            encoder=SalespersonListEncoder,
-            safe=False
-        )
+        try:
+            person = Salesperson.objects.get(id=pk)
+            return JsonResponse(
+                person,
+                encoder=SalespersonListEncoder,
+                safe=False
+            )
+        except Salesperson.DoesNotExist:
+            return JsonResponse(
+                {"message": "Salesperson does not exist"},
+                status=400
+            )
     else:
         try:
             person = Salesperson.objects.get(id=pk)
@@ -163,6 +175,7 @@ def api_customer_list(request):
             {"customers": customers},
             encoder=CustomerListEncoder,
         )
+
     else:
         content = json.loads(request.body)
         phone = content["phone_number"]
@@ -178,12 +191,18 @@ def api_customer_list(request):
 @require_http_methods(["GET", "DELETE"])
 def api_customer_show(request, pk):
     if request.method == "GET":
-        customer = Customer.objects.get(id=pk)
-        return JsonResponse(
-            customer,
-            encoder=CustomerListEncoder,
-            safe=False
+        try:
+            customer = Customer.objects.get(id=pk)
+            return JsonResponse(
+                customer,
+                encoder=CustomerListEncoder,
+                safe=False
         )
+        except Customer.DoesNotExist:
+            return JsonResponse(
+                {"message": "Customer does not exist"},
+                status=400,
+            )
     else:
         try:
             customer = Customer.objects.get(id=pk)
